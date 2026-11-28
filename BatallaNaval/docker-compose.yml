@@ -1,0 +1,16 @@
+services:
+  servidor:
+    build: .
+    image: batallanaval-servidor:1.0
+    container_name: batallanaval-servidor
+    environment:
+      PUERTO: "5555"
+      HISTORIAL: /app/data/historial.txt
+    ports:
+      - "5555:5555"
+    volumes:
+      - historial:/app/data      # el historial de partidas sobrevive a reinicios
+    restart: unless-stopped
+
+volumes:
+  historial:
